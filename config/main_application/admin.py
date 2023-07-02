@@ -14,6 +14,7 @@ class DishAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Category)
 admin.site.register(models.UpperSlider)
+admin.site.register(models.DishTitle)
 
 
 # @admin.register(models.UpperSlider)

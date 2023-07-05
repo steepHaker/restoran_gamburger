@@ -1,43 +1,38 @@
-from django.shortcuts import render, get_object_or_404
+from urllib import request
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import redirect
 from django.views.generic import ListView
-from .models import Dish, UpperSlider, Category, DishTitle
-
-def menu_view(request, category_id):
-    category = get_object_or_404(Category, id=category_id)
-
-    context = {
-        'category_name': category,
-        'dish_titles': category.dishtitle_set.all(),
-        'category_dish': DishTitle.objects.filter(category=category),
-    }
-    return render(request, 'menu_list.html', context)
+from .models import Dish, InfoBanner, UpperSlider, Category, Page, Logo
 
 
-class MenuView(ListView):
+class HomeMyView(ListView):
     model = Dish
-    template_name = 'menu/menu_list.html'
     paginate_by = 10
-
-    def get_queryset(self):# ДЛЯ ПЕРЕХОДА НА СТРАНИЦУ
-        category_slug = self.kwargs.get('slug')
-        return Dish.objects.filter(category__slug=category_slug)
+    template_name = "main/homeMain.html"
+    page_slug = "home"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['upper_slider'] = UpperSlider.objects.first()# НЕ ТРОГАТЬ
-        context['category_name'] = Category.objects.all()# НЕ ТРОГАТЬ
-        context['category_dish'] = Category.objects.prefetch_related('dish_set').all()# НЕ ТРОГАТЬ
-        #context['dish_desc'] = Dish.objects.first
+        context['upper_slider'] = UpperSlider.objects.get(related_Page__slug=self.page_slug)
+        context['category_name'] = Category.objects.all()
+        context['category_dish'] = Category.objects.prefetch_related('dish_set').all()
+        context['pages'] = Page.objects.all()
+        context['icons'] = Logo.objects.all()
         return context
 
-class HomeView(ListView):
-    model = Dish
-    paginate_by = 9
-    template_name = "base.html"
+    
+class MenuView(HomeMyView):
+    template_name = 'main/menu.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['banners'] = InfoBanner.objects.all()
+        return context
 
+    def get(self, request, *args, **kwargs):
+        if request.path == '/home/':
+            return redirect('home')
 
-
-
-
+        return super().get(request, *args, **kwargs)
 
 

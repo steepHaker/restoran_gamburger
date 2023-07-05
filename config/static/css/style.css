@@ -1785,6 +1785,11 @@ h3 {
   }
 }
 
+
+.info {
+  text-align: center;
+}
+
 /* line 14, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_about.scss */
 .about_area .about_info_wrap h3 {
   font-size: 50px;
@@ -1871,6 +1876,11 @@ h3 {
   font-weight: 400;
 }
 
+.food_list li img {
+  width: 30px;
+  height: auto;
+}
+
 /* line 67, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_about.scss */
 .about_area .about_img {
   position: relative;
@@ -1944,6 +1954,18 @@ h3 {
   left: 6%;
 }
 
+.about_area .icon_2 img{
+  width: 300px;
+  height: auto;
+}
+.about_area .icon_1 img{
+  width: 300px;
+  height: auto;
+}
+.about_area .icon_3 img{
+  width: 300px;
+  height: auto;
+}
 /* line 115, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_about.scss */
 .main_about_wrap {
   padding-top: 145px;
@@ -1994,6 +2016,11 @@ h3 {
   line-height: 28px;
   margin-bottom: 46px;
   margin-top: 24px;
+}
+
+.thumb {
+  display: flex; 
+  justify-content: center;
 }
 
 /* line 146, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_about.scss */
@@ -2649,7 +2676,7 @@ h3 {
 /* line 1, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_delicious.scss */
 .Delicious_area {
   padding-bottom: 110px;
-  /*padding-top: 150px;*/
+  padding-top: 50px;
 }
 
 /* line 4, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_delicious.scss */

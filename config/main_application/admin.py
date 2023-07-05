@@ -1,9 +1,6 @@
 from django.contrib import admin
 from . import models
-
-
-from django.contrib import admin
-from . import models
+# from mptt.admin import  MPTTModelAdmin
 
 
 @admin.register(models.Dish)
@@ -13,8 +10,12 @@ class DishAdmin(admin.ModelAdmin):
     save_on_top = True
 
 admin.site.register(models.Category)
+admin.site.register(models.Logo)
 admin.site.register(models.UpperSlider)
-admin.site.register(models.DishTitle)
+admin.site.register(models.Page, ) #MPTTModelAdmin
+admin.site.register(models.InfoBanner ) 
+
+
 
 
 # @admin.register(models.UpperSlider)

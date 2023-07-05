@@ -1,5 +1,5 @@
 {% load static %}
-
+  {% for banner in banners %}
 <div class="about_area">
     <div class="icon_1 d-none d-md-block">
         <img src="{% static 'img/icon/1.png' %}" alt="">
@@ -10,8 +10,9 @@
     <div class="icon_3 d-none d-md-block">
         <img src="{% static 'img/icon/3.png' %}" alt="">
     </div>
+    
     <div class="container">
-        {% for banner in banners %}
+      
         <div class="row align-items-center">
             <div class="col-lg-6">
                  
@@ -44,10 +45,10 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
+        
     </div>
 </div>
-
+{% endfor %}
 
 
 

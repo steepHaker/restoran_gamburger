@@ -1,5 +1,7 @@
+from audioop import reverse
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
 # from mptt.models import MPTTModel, TreeForeignKey
 
 class Page(models.Model):
@@ -7,7 +9,9 @@ class Page(models.Model):
     slug = models.SlugField("Отображение в браузере", unique=True, default="")
    
     def __str__(self):
-        return self.related_Page
+        return self.namePage
+    
+
 
 class Category(models.Model):
     name = models.CharField('Название категории', max_length=255, default="")
@@ -52,8 +56,7 @@ class UpperSlider(models.Model):
     image = models.ImageField("верхний слайдер", upload_to='slider_images/')
     description = models.TextField("описание слайдера", unique=True, default="")
     title = models.CharField('Текст меню', max_length=1000, default="")
-    related_Page = models.ForeignKey(Page, on_delete=models.CASCADE, default="")
-    
+    related_Page = models.ForeignKey(Page, on_delete=models.CASCADE, to_field='slug', default="")
 
     def __str__(self):
         return self.title

@@ -7,7 +7,10 @@ from django.urls import reverse
 class Page(models.Model):
     namePage = models.CharField('Название страницы', max_length=100, default="")
     slug = models.SlugField("Отображение в браузере", unique=True, default="")
-   
+
+    def get_absolute_url(self):
+        return reverse('page-detail', args=[self.slug])
+
     def __str__(self):
         return self.namePage
     
@@ -56,7 +59,8 @@ class UpperSlider(models.Model):
     image = models.ImageField("верхний слайдер", upload_to='slider_images/')
     description = models.TextField("описание слайдера", unique=True, default="")
     title = models.CharField('Текст меню', max_length=1000, default="")
-    related_Page = models.ForeignKey(Page, on_delete=models.CASCADE, to_field='slug', default="")
+    related_Page = models.ForeignKey(Page, on_delete=models.CASCADE, to_field='slug', default="", related_name='upper_sliders')
+
 
     def __str__(self):
         return self.title
@@ -67,6 +71,9 @@ class InfoBanner(models.Model):
     image = models.ImageField(blank=True, upload_to="InfoBanner")
     image1 = models.ImageField(blank=True, upload_to="InfoBanner")
     page = models.ForeignKey(Page, on_delete=models.CASCADE, default="")
+
+    def __str__(self):
+        return self.title
     
     
     

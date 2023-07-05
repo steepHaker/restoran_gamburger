@@ -3,7 +3,7 @@ from pickle import NONE
 from urllib import request
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Dish, InfoBanner, UpperSlider, Category, Page, Logo
 
 class BaseView(ListView):
@@ -41,6 +41,12 @@ class HomeView(BaseView):
 
 class MenuView(BaseView):
     template_name = 'main/menu.html'
+
+
+class PageDetailView(DetailView):
+    model = Page
+    template_name = 'main/page_detail.html'
+    context_object_name = 'page'
 
     
    

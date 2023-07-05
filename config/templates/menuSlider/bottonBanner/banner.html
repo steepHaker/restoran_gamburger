@@ -1,0 +1,58 @@
+{% load static %}
+
+<div class="about_area">
+    <div class="icon_1 d-none d-md-block">
+        <img src="{% static 'img/icon/1.png' %}" alt="">
+    </div>
+    <div class="icon_2 d-none d-md-block">
+        <img src="{% static 'img/icon/2.png' %}" alt="">
+    </div>
+    <div class="icon_3 d-none d-md-block">
+        <img src="{% static 'img/icon/3.png' %}" alt="">
+    </div>
+    <div class="container">
+        {% for banner in banners %}
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                 
+                <div class="about_info_wrap">
+                   
+                    <h3>{{ banner.title }}</h3>
+                        <span class="long_dash"></span>
+                        <p>{{ banner.text }}</p>
+                    <ul class="food_list">
+                        <li>
+                            <img src="{% static 'img/svg_icon/salad.svg' %}" alt="">
+                            <span>Fresh Ingredients</span>
+                        </li>
+                        <li>
+                            <img src="{% static 'img/svg_icon/tray.svg' %}" alt="">
+                            <span>Expert cooker</span>
+                        </li>
+                    </ul>
+                </div> 
+                
+            </div>
+            <div class="col-lg-6">
+                <div class="about_img">
+                    <div class="img_1">
+                        <img src="{{  banner.image.url }}" alt="">
+                    </div>
+                    <div class="small_img">
+                        <img src="{{  banner.image1.url }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

@@ -223,6 +223,8 @@ figure {
 }
 
 img {
+    color: #c01919;
+    width: 110px;
     vertical-align: middle;
     border-style: none
 }

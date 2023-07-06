@@ -1,20 +1,27 @@
 from audioop import reverse
 from django.db import models
-from django.utils.text import slugify
+from django.shortcuts import render
 from django.urls import reverse
-# from mptt.models import MPTTModel, TreeForeignKey
+
+
+def generate_page_urls():
+    pages = Page.objects.all()
+    page_urls = {}
+    for page in pages:
+        url = reverse('menu_detail', kwargs={'menu_slug': page.slug})
+        page_urls[page.namePage] = url
+    return page_urls
 
 class Page(models.Model):
     namePage = models.CharField('Название страницы', max_length=100, default="")
-    slug = models.SlugField("Отображение в браузере", unique=True, default="")
+    slug = models.CharField("Отображение в браузере", max_length=200, unique=True, default="")
 
-    def get_absolute_url(self):
-        return reverse('page-detail', args=[self.slug])
+    def menu_view(request):
+        page_urls = generate_page_urls()
+        return render(request, 'menu.html', {'page_urls': page_urls})
 
     def __str__(self):
         return self.namePage
-    
-
 
 class Category(models.Model):
     name = models.CharField('Название категории', max_length=255, default="")
@@ -24,8 +31,6 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
-    
-
     
 class Dish(models.Model):
     name = models.CharField('Название блюда', max_length=255, default="")
@@ -43,10 +48,6 @@ class Dish(models.Model):
 
     def __str__(self):
         return self.name
-    
-
-
-
 
 class Logo(models.Model):
     title = models.CharField('Название сайта', max_length=255, default="")
@@ -60,7 +61,6 @@ class UpperSlider(models.Model):
     description = models.TextField("описание слайдера", unique=True, default="")
     title = models.CharField('Текст меню', max_length=1000, default="")
     related_Page = models.ForeignKey(Page, on_delete=models.CASCADE, to_field='slug', default="", related_name='upper_sliders')
-
 
     def __str__(self):
         return self.title

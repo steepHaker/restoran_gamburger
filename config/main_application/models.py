@@ -59,11 +59,11 @@ class Logo(models.Model):
 class UpperSlider(models.Model):
     image = models.ImageField("верхний слайдер", upload_to='slider_images/')
     description = models.TextField("описание слайдера", unique=True, default="")
-    title = models.CharField('Текст меню', max_length=1000, default="")
+    title = models.CharField('Текст меню', max_length=1000, blank=True, default="")
     related_Page = models.ForeignKey(Page, on_delete=models.CASCADE, to_field='slug', default="", related_name='upper_sliders')
 
     def __str__(self):
-        return self.title
+        return self.description
     
 class InfoBanner(models.Model):
     title = models.CharField(max_length=300, blank=True, default="your title")
@@ -74,6 +74,12 @@ class InfoBanner(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+
+    #   - Remove field slug from page
+    # - Add field url to page
+    # - Alter field related_Page on upperslider
     
     
     

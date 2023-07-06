@@ -1,7 +1,7 @@
+<!-- страница главная -->
 {% extends "base.html" %}
 {% include 'menuSlider/bottonBanner/banner.html' %}
 {% block content %}
-
 {% if show_slider_button %}
 <div class="slider-button">
     <a href="{% url 'slider-page-url' %}" class="btn btn-primary">Slider Button</a>

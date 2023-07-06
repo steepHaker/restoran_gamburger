@@ -1,0 +1,68 @@
+<!-- страница меню блюд -->
+{% extends "base.html" %}
+{% block content %}
+<div class="Delicious_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-50">
+                    <h3>{{ upper_slider.title }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="tablist_menu">
+            <div class="row">
+                <div class="col-xl-12">
+                    <ul class="nav justify-content-center" id="pills-tab" role="tablist">
+                        {% for category in category_name %}
+                        <li class="nav-item">
+                            <a class="nav-link{% if forloop.first %} active{% endif %}"
+                                id="pills-category-{{ category.id }}-tab" data-toggle="pill"
+                                href="#pills-category-{{ category.id }}" role="tab"
+                                aria-controls="pills-category-{{ category.id }}"
+                                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                                <div class="single_menu text-center">
+                                    <div class="icon">
+                                        <img class="category_icon" src='{{ category.image.url }}'>
+                                    </div>
+                                    <h4>{{ category.name }}</h4>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content" id="pills-tabContent">
+            {% for category in category_dish %}
+            <div class="tab-pane fade{% if forloop.first %} show active{% endif %}"
+                id="pills-category-{{ category.id }}" role="tabpanel"
+                aria-labelledby="pills-category-{{ category.id }}-tab">
+                <div class="row">
+                    {% for dish in category.dish_set.all %}
+                    <div class="col-xl-6 col-md-6 col-lg-6">
+                        <div class="single_delicious d-flex align-items-center">
+                            <div class="thumb">
+                                <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+                            </div>
+                            <div class="info">
+                                <h3><!--#{{ dish.id }}. -->{{ dish.name }}</h3>
+                                <p>{{ dish.description }}</p>
+                                <span>{{ dish.currency }}{{ dish.price }} </span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% if show_slider_button %}
+<div class="slider-button">
+    <a href="{% url 'slider-page-url' %}" class="btn btn-primary">Slider Button</a>
+</div>
+{% endif %}
+{% endblock content %}

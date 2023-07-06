@@ -1,11 +1,7 @@
-from django.conf import settings
-from django.contrib import admin
-from django.urls import path, include
-
-
+from django.urls import path
+from .views import BlogView, SinglePostView
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    # path('', include('main_application.urls')),
-    # path('', include('blog.urls')),
+    path('home/blog/', BlogView.as_view(), name='blog'),
+    path('home/blog/<slug:post_slug>/', SinglePostView.as_view(), name='single_blog'),
 ]

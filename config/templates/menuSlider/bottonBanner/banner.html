@@ -1,5 +1,6 @@
+<!-- Выаод нижнего баннера на главной странице -->
 {% load static %}
-  {% for banner in banners %}
+{% for banner in banners %}
 <div class="about_area">
     <div class="icon_1 d-none d-md-block">
         <img src="{% static 'img/icon/1.png' %}" alt="">
@@ -10,17 +11,17 @@
     <div class="icon_3 d-none d-md-block">
         <img src="{% static 'img/icon/3.png' %}" alt="">
     </div>
-    
+
     <div class="container">
-      
+
         <div class="row align-items-center">
             <div class="col-lg-6">
-                 
+
                 <div class="about_info_wrap">
-                   
+
                     <h3>{{ banner.title }}</h3>
-                        <span class="long_dash"></span>
-                        <p>{{ banner.text }}</p>
+                    <span class="long_dash"></span>
+                    <p>{{ banner.text }}</p>
                     <ul class="food_list">
                         <li>
                             <img src="{% static 'img/svg_icon/salad.svg' %}" alt="">
@@ -31,8 +32,8 @@
                             <span>Expert cooker</span>
                         </li>
                     </ul>
-                </div> 
-                
+                </div>
+
             </div>
             <div class="col-lg-6">
                 <div class="about_img">
@@ -45,7 +46,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
 {% endfor %}
